@@ -39,10 +39,14 @@ var onb_launch_action = tiled.registerAction("ONB: Launch", function(action) {
     }
     
     let launch_string = `onb://jackin?address=${settings.server_address}&port=${settings.server_port}&data=${data}`
-    tiled.log(`launch string=${launch_string}`);
-
-    get_request(launch_string)
+    launch_onb(launch_string)
 })
+
+function launch_onb(launch_string){
+    tiled.log(`launch string=${launch_string}`)
+    let process = new Process()
+    process.exec(`explorer "${launch_string}"`)
+}
 
 function load_properties(){
     if(tiled.project){
